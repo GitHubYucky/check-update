@@ -8,7 +8,6 @@ import pandas as pd
 from bs4 import BeautifulSoup
 
 def scraping(url):
-    url = 'https://news.yahoo.co.jp/'
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     result = []
@@ -42,7 +41,8 @@ def list_diff(result, last_result):
             return_list.append(tmp)
     return return_list
 
-result=scraping()
+url = 'https://comic-meteor.jp/jyashin/'
+result=scraping(url)
 # output_csv(result)
 last_result=read_csv()
 diff_list=list_diff(result,last_result)
