@@ -11,7 +11,7 @@ def scraping(url):
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     result = []
-    for top_news in soup.find_all(class_='sc-hmzhuo hkqpwM'):
+    for top_news in soup.find_all(class_='latest_info_date'):
         result.append([
             top_news.text,
             top_news.get('href')
@@ -43,7 +43,7 @@ def list_diff(result, last_result):
 
 url = 'https://comic-meteor.jp/jyashin/'
 result=scraping(url)
-# output_csv(result)
+output_csv(result)
 last_result=read_csv()
 diff_list=list_diff(result,last_result)
 print(diff_list)
